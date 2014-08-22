@@ -3,12 +3,26 @@ The 'Getting and Cleaning Data' PA project
 ##The file contents
 This folder contains a zipped dataset [*Human Activity Recognition Using Smartphones Dataset (Version 1.0)*](www.smartlab.ws)  and an R script for extracting the mean and standard deviation values from the dataset and averaging it across all subjects.
 
-##The experiment description
-The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
-
-The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. See 'features_info.txt' for more details. 
-
-##The dataset includes the following files:
-- README.md - this file
-- CodeBook.md - the variables' descriptions, all the transformations performed to clean up the original data and produce the resulting tidy dataset
+####The dataset includes the following files:
+- README.md - this file containing a description of all the transformations performed to clean up the original data and produce the resulting tidy dataset
+- CodeBook.md - the variables' descriptions, 
 - getdata-projectfiles-UCI HAR Dataset.zip - the original data
+
+##The steps performed to obtain the aggregated tidy data set:
+1. unzip the original data file (provided it exists in the directory from which the script is called)
+2. read the files containing the names of measured variables (*features.txt*) and the activity type labels (*'activity_labels.txt'*)
+3. edit the strings read from 'features.txt' so that they nay be used for column names (remove '(' and ')' characters, replace '-' with '_'); highlight the names for means and standard deviations with capital letters.
+4. read test and training datasets from UCI *'./HAR Dataset/test/X_test.txt'* and *'./UCI HAR Dataset/train/X_train.txt'* respectively, and label their columns with names read from *'features.txt'*
+5. read the activity names vectors for test and training datasets (*'y_test.txt'*,*'y_train.txt'*) and attach them as columns *'activity'* to the appropriate data sets
+6. replace numeric values in the *'activity'* column with the names read from *'activity_labels.txt'*
+7. read the subjects' numbers vectors for test and training datasets (*'subject_test.txt'*, *'subject_train.txt'*)
+8. attach the subjects vectors to both data frames
+9. join the *'train'* and *'test'* data frames by collating them with *rbind* function
+10. pick from the obtained dataset the columns with subject number and activity name and those containing the infrmation on means and standard deviations (previously marked with capital letters)
+11. create a new data set by aggregating the data by *'subject'* and *'activity'* columns, using the *'mean'* function
+12. sort the rows by *'subject'* and *'activity'* columns
+13. save the data frame in the file "averaged_data.txt"
+
+
+
+
