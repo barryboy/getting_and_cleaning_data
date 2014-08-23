@@ -11,7 +11,7 @@ This folder contains a zipped dataset [*Human Activity Recognition Using Smartph
 ##The steps performed to obtain the aggregated tidy data set:
 1. unzip the original data file (provided it exists in the directory from which the script is called)
 2. read the files containing the names of measured variables (*features.txt*) and the activity type labels (*'activity_labels.txt'*)
-3. edit the strings read from 'features.txt' so that they nay be used for column names (remove '(' and ')' characters, replace '-' with '_'); highlight the names for means and standard deviations with capital letters.
+3. edit the strings read from 'features.txt' so that they may be used for column names (remove '(' and ')' characters, replace '-' with '_'); highlight the names for means and standard deviations with capital letters.
 4. read test and training datasets from UCI *'./HAR Dataset/test/X_test.txt'* and *'./UCI HAR Dataset/train/X_train.txt'* respectively, and label their columns with names read from *'features.txt'*
 5. read the activity names vectors for test and training datasets (*'y_test.txt'*,*'y_train.txt'*) and attach them as columns *'activity'* to the appropriate data sets
 6. replace numeric values in the *'activity'* column with the names read from *'activity_labels.txt'*
